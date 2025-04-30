@@ -11,22 +11,23 @@ h1{
 section{
     background: white;
     padding: 15px;
-    margin: 15 px 0;
+    margin: 15px 0;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 button{
-    background-color: lightgreen;
+    background-color: rgb(164, 144, 238);
     color: white;
     border: none;
     padding: 8px;
     margin-top: 5px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 button:hover{
-    background-color: green;
+    background-color: rgb(66, 0, 128);
 }
 
 ul{
@@ -35,8 +36,22 @@ ul{
 }
 
 li{
-    background: #ddd;
+    background: rgb(208, 196, 252);
     padding: 5px;
     margin: 5px 0;
     border-radius: 3px;
 }
+
+ input {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: solid 1px #bbb;
+ }
+
+ select{
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: solid 1px #bbb;
+ }
