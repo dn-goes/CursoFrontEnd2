@@ -1,0 +1,17 @@
+nav{
+    width: 100%;
+    background-color: #963535;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 1.8em;
+}
+
