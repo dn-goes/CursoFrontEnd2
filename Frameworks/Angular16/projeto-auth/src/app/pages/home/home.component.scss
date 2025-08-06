@@ -1,0 +1,70 @@
+.cadastro-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.2);
+}
+
+h2 {
+  color: #fff;
+  margin-bottom: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+form {
+  background: rgba(255,255,255,0.1);
+  padding: 24px 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(25, 118, 210, 0.1);
+  width: 100%;
+  max-width: 350px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: #fff;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.8);
+  margin-bottom: 2px;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px #1976d2;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px 0;
+  background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #1565c0 60%, #42a5f5 100%);
+}
