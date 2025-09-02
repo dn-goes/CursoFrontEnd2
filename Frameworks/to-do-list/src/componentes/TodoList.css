@@ -1,0 +1,51 @@
+/* Lista de tarefas */
+ul {
+  list-style: none;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 0;
+}
+
+/* Cada item */
+li {
+  background: #f5f5f5;
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Efeito hover */
+li:hover {
+  background: #e9f3ff;
+  transform: scale(1.02);
+}
+
+/* Texto da tarefa */
+li span {
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Botões dentro da tarefa */
+li button {
+  margin-left: 10px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #0077ff;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+li button:hover {
+  background: #005fcc;
+}

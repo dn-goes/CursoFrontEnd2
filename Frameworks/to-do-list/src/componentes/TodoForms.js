@@ -1,11 +1,17 @@
+import "./TodoForms.css"
+//formulário para inserir uma tarefa 
 import { useState } from "react";
 
 //React DOM
 
 //lógica do componente
+// arrow function
 const TodoForm = ({addTask}) => {
     //Controle de estado
+    // vetor para armazenamento da dados do formulário
     const [task, setTask] = useState("");
+    //useState => usa a memoria local do navegador
+    //para armazenar
 
     //Função para adicionar tarefa
     const handleSubmit = (e) => {

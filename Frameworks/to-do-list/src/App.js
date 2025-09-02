@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState } from "react"
 import TodoForm from "./componentes/TodoForms";
 import TodoList from "./componentes/TodoList";

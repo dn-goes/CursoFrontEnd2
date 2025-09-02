@@ -1,3 +1,4 @@
+import "./TodoList.css";
 
 const TodoList = ({tasks, removeTask}) =>{
     return(

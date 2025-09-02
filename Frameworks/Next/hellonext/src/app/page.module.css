@@ -1,0 +1,22 @@
+.body{
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #d9fbff, #ffffff);
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+
+
+.h1{
+  color: rgb(59, 179, 216);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.p{
+  color: rgb(0, 132, 255);
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
