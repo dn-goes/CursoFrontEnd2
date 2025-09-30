@@ -103,3 +103,55 @@ classDiagram
 
 ```
 
+### Diagrama de Casos de Uso
+
+```mermaid 
+
+usecaseDiagram
+    actor "Técnico" as Tecnico
+    actor "Gerente" as Gerente
+    actor "Administrador" as Admin
+
+    rectangle Sistema {
+        (Login) as UC1
+        (Gerenciar Usuários) as UC2
+        (Gerenciar Equipamentos) as UC3
+        (Gerenciar Ordens de Serviço) as UC4
+        (Visualizar Dashboard) as UC5
+    }
+
+    Tecnico --> UC1
+    Tecnico --> UC4
+    Tecnico --> UC5
+
+    Gerente --> UC1
+    Gerente --> UC3
+    Gerente --> UC4
+    Gerente --> UC5
+
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4
+    Admin --> UC5
+
+```
+
+### Diagrama de Fluxo (Login e Acesso ao Dashboard)
+
+``` meimaid
+
+flowchart TD
+    A[Início] --> B[Login Usuário]
+    B --> C{Usuário Autenticado?}
+    C -- Não --> B
+    C -- Sim --> D[Selecionar "Abrir Ordem de Serviço"]
+    D --> E[Preencher Formulário da OS]
+    E --> F[Salvar no Sistema]
+    F --> G[Status da OS = "Aberta"]
+    G --> H[Designar Técnico]
+    H --> I[Técnico executa serviço]
+    I --> J[Atualizar Status: Em andamento -> Concluída]
+    J --> K[Fim]
+
+```
