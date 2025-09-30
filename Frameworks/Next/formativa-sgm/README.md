@@ -51,8 +51,7 @@ Descreve o Comportamento das Entidades do Sistema
     - Atributos: id, titulo, descricao, tipo, status, idTecnico, idEquipamento
     - Métodos: CRUD
 
-```mermaid      
-
+```mermaid
 
 classDiagram
     class Usuario {
@@ -100,58 +99,51 @@ classDiagram
     Usuario "1" -- "0..*" OrdemServico : atribui >
     Equipamento "1" -- "0..*" OrdemServico : associado a >
 
-
 ```
 
-### Diagrama de Casos de Uso
+2. ### Caso de Uso
+Ilustra as interações dos diferentes tipos de usuários(Atores) com as funcionalidades do sistema
+- Técnico: Gerenciar Ordem de Serviço (CRUD) e acessar o DashBoard
+- Gerente: funções do técnico + Gerenciamento de Equipamentos (CRUD)
+- Admin: Gerenciar Usuários, Acessar o Dashboard
 
-```mermaid 
+Todos Devem Fazer o login antes de qualquer ação
 
-usecaseDiagram
-    actor "Técnico" as Tecnico
-    actor "Gerente" as Gerente
-    actor "Administrador" as Admin
+```mermaid
 
-    rectangle Sistema {
-        (Login) as UC1
-        (Gerenciar Usuários) as UC2
-        (Gerenciar Equipamentos) as UC3
-        (Gerenciar Ordens de Serviço) as UC4
-        (Visualizar Dashboard) as UC5
-    }
+graph TD 
 
-    Tecnico --> UC1
-    Tecnico --> UC4
-    Tecnico --> UC5
+    subgraph "SGM"
+        caso1([Fazer Login])
+        caso2([Gerenciar Ordens de Serviço - CRUD])
+        caso3([Gerenciar Equipamentos - CRUD])
+        caso4([Gerenciar Usuários])
+        caso5([Acessar o Dasboard])
+    end
 
-    Gerente --> UC1
-    Gerente --> UC3
-    Gerente --> UC4
-    Gerente --> UC5
+    Tecnico([Técnico de Manutenção])
+    Gerente([Gerente de Manutenção])
+    Admin([Administrador do Sistema])
 
-    Admin --> UC1
-    Admin --> UC2
-    Admin --> UC3
-    Admin --> UC4
-    Admin --> UC5
+    Tecnico --> caso1
+    Tecnico --> caso2
+    Tecnico --> caso5
 
-```
+    Gerente --> caso1
+    Gerente --> caso2
+    Gerente --> caso3
+    Gerente --> caso5
 
-### Diagrama de Fluxo (Login e Acesso ao Dashboard)
+    Admin --> caso1
+    Admin --> caso4
+    Admin --> caso5
 
-``` meimaid
 
-flowchart TD
-    A[Início] --> B[Login Usuário]
-    B --> C{Usuário Autenticado?}
-    C -- Não --> B
-    C -- Sim --> D[Selecionar "Abrir Ordem de Serviço"]
-    D --> E[Preencher Formulário da OS]
-    E --> F[Salvar no Sistema]
-    F --> G[Status da OS = "Aberta"]
-    G --> H[Designar Técnico]
-    H --> I[Técnico executa serviço]
-    I --> J[Atualizar Status: Em andamento -> Concluída]
-    J --> K[Fim]
+    caso1 -.-> caso2
+    caso1 -.-> caso3
+    caso1 -.-> caso4
+    caso1 -.-> caso5
+
+    
 
 ```
