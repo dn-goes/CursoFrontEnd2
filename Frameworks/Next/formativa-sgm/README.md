@@ -1,58 +1,63 @@
-# Sistema de Getão de Manutenção (SGM) - Formativa
+// ...existing code...
+# 🧰 Sistema de Gestão de Manutenção (SGM)
 
-## Briefing
-O projeto consiste no desenvolvimento de um Sistema de Gestão de Manutenção (SGM) no formato de uma aplicação web. O objetivo é centralizar e otimizar o controle das atividades de manutenção de máquinas e equipamentos de uma empresa. A plataforma permitirá o cadastro de equipamentos, agendamento de manutenções preventivas e corretivas, e o gerenciamento de ordens de serviço.
+## 📋 Briefing
+O **Sistema de Gestão de Manutenção (SGM)** é uma aplicação web para centralizar e otimizar o controle das atividades de **manutenção de máquinas e equipamentos** de uma empresa.  
+Permite **cadastro de equipamentos**, **agendamento de manutenções preventivas e corretivas**, e **gerenciamento de ordens de serviço**, com dashboards por perfil de usuário.
 
-## Objetivos do Projeto
-- gerenciar informações sobre equipamentos e manutenção de uma empresa
-- realizar abertura de chamados de manutenção (ordens de serviço)
-- visualizar informaçoes em um dashboard
+---
 
-## Público-Alvo
-- Técnicos (usuário final) - Ordens de Serviço
-- Gerentes (usuário intermediário) - Ordens de Serviço / Equipamentos
-- Admin dos Sistema - Responsável pelo Gestão de Usuários
+## 🎯 Objetivos do Projeto
+- Gerenciar informações sobre **equipamentos** e **manutenções** da empresa  
+- Realizar **abertura e controle de ordens de serviço**  
+- Visualizar **informações em dashboards**  
 
-## Levantamento de Requistos do Projeto
-- ### Requisitos Funcionais
-    - Gerenciamento de Ordens de Serviço (Criar, Atualizar, Listar, Deletar)
-    - Gerenciamento de Usuário pelo Admin (Criar, Atualizar, Listar , Deletar)
-    - Gerenciamento de Equipamentos (Criar, Atualizar, Listar, Deletar) 
-    - Tela de Visualizações de Informações de Acordo com o Perfil do Usuário
-    - Tela de Login dos Usuários (Email e Senha)
+---
 
-- ### Requisitos Não Funcionais
-    - Armazenamento das Informações sobre Ordem de Serviço, Equipamento e Usuários em um BD (MongoDB)
-    - Criptografia de Senha do Usuário 
-    - JWT para Segurança das Conexões
-    - Gerenciamento de Rotas de Acesso (Middlewares)
+## 👥 Público-Alvo
 
-## Recurso do Projeto (Tecnológicos)
-- Framework de Desenvolvimetno Next
-- MongoDB (Banco de Dados - Não Relacional)
-- Linguagem de Programação : TypeScript
-- GitHub
-- VsCode
-- Figma
+| Perfil | Atribuições no Sistema |
+|--------|------------------------|
+| **Técnicos** | Criar e gerenciar ordens de serviço |
+| **Gerentes** | Gerenciar ordens e equipamentos |
+| **Administradores** | Gerenciar usuários, perfis e acesso |
 
-## Diagramas
+---
 
-1. ### Classe
-Descreve o Comportamento das Entidades do Sistema
-- Usuários (User/Usuario)
-    - Atributos: id, nome, email, senha, função
-    - Métodos: create, read, update, delete, login, logout
+## 📦 Requisitos
 
-- Equipamentos (Equipment/Equipamento)
-    - Atributos: id, modelo, marca, descricao, status, localizacao, numeroSerie
-    - Métodos: CRUD
+### ✅ Requisitos Funcionais
+- CRUD de **Ordens de Serviço**  
+- CRUD de **Usuários**  
+- CRUD de **Equipamentos**  
+- **Login** seguro (email e senha)  
+- **Dashboard** por perfil de usuário  
 
-- Ordem de Serviço (ServiceOrder/OrdemServico)
-    - Atributos: id, titulo, descricao, tipo, status, idTecnico, idEquipamento
-    - Métodos: CRUD
+### ⚙️ Requisitos Não Funcionais
+- Banco de Dados **MongoDB**  
+- **Criptografia** de senha com bcrypt  
+- **JWT** para autenticação  
+- **Middlewares** para controle de acesso  
 
+---
+
+## 💻 Recursos Tecnológicos
+
+| Recurso | Descrição |
+|---------|-----------|
+| Framework | Next.js |
+| Linguagem | TypeScript |
+| Banco de Dados | MongoDB |
+| Controle de Versão | GitHub |
+| Editor | VS Code |
+| Prototipação | Figma ([link](https://www.figma.com/design/ZjIS7c8HkupmEsmNabvcfX/Untitled?node-id=0-1&t=4wslqLXVAubbHQc4-1)) |
+
+---
+
+## 🧩 Diagramas do Sistema
+
+### 🧱 Diagrama de Classes
 ```mermaid
-
 classDiagram
     class Usuario {
         +String id
@@ -98,27 +103,19 @@ classDiagram
 
     Usuario "1" -- "0..*" OrdemServico : atribui >
     Equipamento "1" -- "0..*" OrdemServico : associado a >
-
 ```
 
-2. ### Caso de Uso
-Ilustra as interações dos diferentes tipos de usuários(Atores) com as funcionalidades do sistema
-- Técnico: Gerenciar Ordem de Serviço (CRUD) e acessar o DashBoard
-- Gerente: funções do técnico + Gerenciamento de Equipamentos (CRUD)
-- Admin: Gerenciar Usuários, Acessar o Dashboard
+---
 
-Todos Devem Fazer o login antes de qualquer ação
-
+## 🎭 Diagrama de Casos de Uso
 ```mermaid
-
 graph TD 
-
     subgraph "SGM"
         caso1([Fazer Login])
         caso2([Gerenciar Ordens de Serviço - CRUD])
         caso3([Gerenciar Equipamentos - CRUD])
         caso4([Gerenciar Usuários])
-        caso5([Acessar o Dasboard])
+        caso5([Acessar o Dashboard])
     end
 
     Tecnico([Técnico de Manutenção])
@@ -138,71 +135,282 @@ graph TD
     Admin --> caso4
     Admin --> caso5
 
+    caso1 -.-> caso2
+    caso1 -.-> caso3
+    caso1 -.-> caso4
+    caso1 -.-> caso5
+```
+
+---
+
+## 🔄 Diagrama de Fluxo (Login)
+```mermaid
+graph TD
+    A[Início] --> B[Acessa a Tela de Login]
+    B --> C[Preenche Email e Senha]
+    C --> D{Validar Credenciais?}
+    D -->|Sim| E[Gerar Token JWT]
+    E --> F[Redirecionar para Dashboard]
+    D -->|Não| G[Mensagem de Erro]
+    G --> B
+```
+
+---
+
+## ⚠️ Análise de Riscos
+
+### 🧠 Riscos Técnicos
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|----------|
+| 1 | Chave secreta do JWT comprometida | Média | Alto | Usar chaves fortes, armazenar em variáveis de ambiente e rotacionar periodicamente |
+| 2 | Vulnerabilidade no bcrypt | Baixa | Alto | Garantir senhas ≤ 72 bytes e evitar concatenação antes do hash |
+| 3 | Lentidão com alto volume de dados | Média | Médio | Indexar consultas e implementar paginação |
+| 4 | Código com bugs e má qualidade | Alta | Médio | Fazer code review e testes automatizados |
+
+### 🗂️ Riscos de Gerenciamento
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|----------|
+| 5 | Aumento do escopo (Scope Creep) | Alta | Médio | Controlar mudanças e revisar impactos antes de aceitar |
+| 6 | Atraso na entrega | Alta | Médio | Adotar metodologia ágil e revisar cronograma por sprint |
+| 7 | Requisitos mal interpretados | Média | Alto | Validar protótipos com usuários e manter comunicação constante |
+
+### 🏢 Riscos Organizacionais
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|----------|
+| 8 | Resistência dos usuários ao sistema | Média | Alto | Treinar usuários e comunicar benefícios |
+| 9 | Inserção de dados incorretos | Média | Alto | Implementar validação nos formulários |
+| 10 | Falta de treinamento dos usuários | Média | Médio | Criar manuais e realizar capacitação prática |
+
+---
+
+## 🧪 Protótipo do Sistema
+A prototipação visual inclui telas de login, dashboard e módulos de gerenciamento de usuários, equipamentos e ordens de serviço.
+
+🔗 Protótipo no Figma: https://www.figma.com/design/ZjIS7c8HkupmEsmNabvcfX/Untitled?node-id=0-1&t=4wslqLXVAubbHQc4-1
+
+---
+
+## 🧱 Estrutura dos Controladores (Controllers)
+
+- UsuarioController  
+  CRUD completo e autenticação (login/logout)
+
+- EquipamentoController  
+  CRUD completo de equipamentos (modelo, marca, localização, etc.)
+
+- OrdemServicoController  
+  CRUD completo de ordens de serviço (título, descrição, tipo, status, técnico e equipamento)
+
+---
+
+## 🧭 Conclusão
+O Sistema de Gestão de Manutenção (SGM) aumenta a eficiência e organização das atividades de manutenção industrial, reduz falhas, melhora a comunicação e centraliza dados em uma plataforma segura, escalável e moderna.
+```// filepath: c:\Users\DevCastelloA\Desktop\Daniel\CursoFrontEnd2\Frameworks\Next\formativa-sgm\README.md
+// ...existing code...
+
+```
+
+# 🧰 Sistema de Gestão de Manutenção (SGM)
+
+## 📋 Briefing
+O **Sistema de Gestão de Manutenção (SGM)** é uma aplicação web para centralizar e otimizar o controle das atividades de **manutenção de máquinas e equipamentos** de uma empresa.  
+Permite **cadastro de equipamentos**, **agendamento de manutenções preventivas e corretivas**, e **gerenciamento de ordens de serviço**, com dashboards por perfil de usuário.
+
+---
+
+## 🎯 Objetivos do Projeto
+- Gerenciar informações sobre **equipamentos** e **manutenções** da empresa  
+- Realizar **abertura e controle de ordens de serviço**  
+- Visualizar **informações em dashboards**  
+
+---
+
+## 👥 Público-Alvo
+
+| Perfil | Atribuições no Sistema |
+|--------|------------------------|
+| **Técnicos** | Criar e gerenciar ordens de serviço |
+| **Gerentes** | Gerenciar ordens e equipamentos |
+| **Administradores** | Gerenciar usuários, perfis e acesso |
+
+## 📦 Requisitos
+
+### ✅ Requisitos Funcionais
+- CRUD de **Ordens de Serviço**  
+- CRUD de **Usuários**  
+- CRUD de **Equipamentos**  
+- **Login** seguro (email e senha)  
+- **Dashboard** por perfil de usuário  
+
+### ⚙️ Requisitos Não Funcionais
+- Banco de Dados **MongoDB**  
+- **Criptografia** de senha com bcrypt  
+- **JWT** para autenticação  
+- **Middlewares** para controle de acesso  
+
+---
+
+## 💻 Recursos Tecnológicos
+
+| Recurso | Descrição |
+|---------|-----------|
+| Framework | Next.js |
+| Linguagem | TypeScript |
+| Banco de Dados | MongoDB |
+| Controle de Versão | GitHub |
+| Editor | VS Code |
+| Prototipação | Figma ([link](https://www.figma.com/design/ZjIS7c8HkupmEsmNabvcfX/Untitled?node-id=0-1&t=4wslqLXVAubbHQc4-1)) |
+
+---
+
+## 🧩 Diagramas do Sistema
+
+### 🧱 Diagrama de Classes
+```mermaid
+classDiagram
+    class Usuario {
+        +String id
+        +String nome
+        +String email
+        +String senha
+        +String funcao
+        +create()
+        +read()
+        +update()
+        +delete()
+        +login()
+        +logout()
+    }
+
+    class Equipamento {
+        +String id
+        +String modelo
+        +String marca
+        +String descricao
+        +String status
+        +String localizacao
+        +String numeroSerie
+        +create()
+        +read()
+        +update()
+        +delete()
+    }
+
+    class OrdemServico {
+        +String id
+        +String titulo
+        +String descricao
+        +String tipo
+        +String status
+        +String idTecnico
+        +String idEquipamento
+        +create()
+        +read()
+        +update()
+        +delete()
+    }
+
+    Usuario "1" -- "0..*" OrdemServico : atribui >
+    Equipamento "1" -- "0..*" OrdemServico : associado a >
+```
+
+---
+
+## 🎭 Diagrama de Casos de Uso
+```mermaid
+graph TD 
+    subgraph "SGM"
+        caso1([Fazer Login])
+        caso2([Gerenciar Ordens de Serviço - CRUD])
+        caso3([Gerenciar Equipamentos - CRUD])
+        caso4([Gerenciar Usuários])
+        caso5([Acessar o Dashboard])
+    end
+
+    Tecnico([Técnico de Manutenção])
+    Gerente([Gerente de Manutenção])
+    Admin([Administrador do Sistema])
+
+    Tecnico --> caso1
+    Tecnico --> caso2
+    Tecnico --> caso5
+
+    Gerente --> caso1
+    Gerente --> caso2
+    Gerente --> caso3
+    Gerente --> caso5
+
+    Admin --> caso1
+    Admin --> caso4
+    Admin --> caso5
 
     caso1 -.-> caso2
     caso1 -.-> caso3
     caso1 -.-> caso4
     caso1 -.-> caso5
-
 ```
 
-3. ### Fluxo
-Detalha um Passo a Passo para realizar uma ação do Sistema
+---
 
-- Diagrama de fluxo de Login
-    - o Usuário acessa a tela de login
-    - Insere as credenciais
-    - O Sistema verifica as Credenciais
-        - se sim: gera um token(JWT) -> Dashboard
-        - se não: manda uma mensagem de erro -> Permanece na tela de Login
-
+## 🔄 Diagrama de Fluxo (Login)
 ```mermaid
-
 graph TD
-    A[Início] --> B{Acessa a Tela de Login}
+    A[Início] --> B[Acessa a Tela de Login]
     B --> C[Preenche Email e Senha]
-    C --> D{Validar as Credenciais}
-    D --> SIM --> E[Gerar token] --> F[DashBoard]
-    D --> NÃO --> G[MEnsagem de Erro] --> B
-
+    C --> D{Validar Credenciais?}
+    D -->|Sim| E[Gerar Token JWT]
+    E --> F[Redirecionar para Dashboard]
+    D -->|Não| G[Mensagem de Erro]
+    G --> B
 ```
 
-## Análise de Risco
-# Matriz de Análise de Risco do Projeto SGM
+---
 
-A tabela abaixo apresenta os riscos identificados no projeto **SGM**, organizados por categoria, junto com a probabilidade, impacto e estratégias de mitigação propostas.
+## ⚠️ Análise de Riscos
+
+### 🧠 Riscos Técnicos
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|----------|
+| 1 | Chave secreta do JWT comprometida | Média | Alto | Usar chaves fortes, armazenar em variáveis de ambiente e rotacionar periodicamente |
+| 2 | Vulnerabilidade no bcrypt | Baixa | Alto | Garantir senhas ≤ 72 bytes e evitar concatenação antes do hash |
+| 3 | Lentidão com alto volume de dados | Média | Médio | Indexar consultas e implementar paginação |
+| 4 | Código com bugs e má qualidade | Alta | Médio | Fazer code review e testes automatizados |
+
+### 🗂️ Riscos de Gerenciamento
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|----------|
+| 5 | Aumento do escopo (Scope Creep) | Alta | Médio | Controlar mudanças e revisar impactos antes de aceitar |
+| 6 | Atraso na entrega | Alta | Médio | Adotar metodologia ágil e revisar cronograma por sprint |
+| 7 | Requisitos mal interpretados | Média | Alto | Validar protótipos com usuários e manter comunicação constante |
+
+### 🏢 Riscos Organizacionais
+| ID | Risco | Probabilidade | Impacto | Mitigação |
+|----|-------|---------------|---------|----------|
+| 8 | Resistência dos usuários ao sistema | Média | Alto | Treinar usuários e comunicar benefícios |
+| 9 | Inserção de dados incorretos | Média | Alto | Implementar validação nos formulários |
+| 10 | Falta de treinamento dos usuários | Média | Médio | Criar manuais e realizar capacitação prática |
 
 ---
 
-## Riscos Técnicos
+## 🧪 Protótipo do Sistema
+A prototipação visual inclui telas de login, dashboard e módulos de gerenciamento de usuários, equipamentos e ordens de serviço.
 
-| ID  | Risco                    | Probabilidade | Impacto | Mitigação |
-|-----|--------------------------|---------------|---------|-----------|
-| 1   | Chave secreta do JWT comprometida         | Média         | Alto    | Utilizar chaves secretas longas e complexas, armazená-las em variáveis de ambiente e implementar política de rotação de chaves. |
-| 2   | Vulnerabilidade de truncamento do Bcrypt  | Baixa         | Alto    | Garantir que a entrada para o hashing de senha nunca exceda 72 bytes e tratar a senha de forma isolada, sem concatenação. |
-| 3   | Lentidão do sistema com aumento de dados  | Média         | Média   | Otimizar consultas com indexação, implementar paginação e planejar arquitetura para escalabilidade futura. |
-| 4   | Código de baixa qualidade com bugs        | Alta          | Média   | Adotar práticas de código limpo, revisões de código (code review) e testes unitários e de integração contínua. |
+🔗 Protótipo no Figma: https://www.figma.com/design/ZjIS7c8HkupmEsmNabvcfX/Untitled?node-id=0-1&t=4wslqLXVAubbHQc4-1
 
 ---
 
-## Riscos de Gerenciamento
+## 🧱 Estrutura dos Controladores (Controllers)
 
-| ID  | Risco                             | Probabilidade | Impacto | Mitigação |
-|-----|-----------------------------------|---------------|---------|-----------|
-| 5   | Aumento do escopo (Scope Creep)   | Alta          | Média   | Formalizar processo de controle de mudanças e avaliar impacto em prazo/custo antes da aprovação. |
-| 6   | Atraso na entrega do projeto      | Alta          | Média   | Utilizar metodologias ágeis, reavaliar cronograma a cada sprint e manter comunicação transparente sobre progresso. |
-| 7   | Requisitos mal interpretados      | Média         | Alto    | Validar protótipos e wireframes com usuários finais e manter comunicação constante para esclarecimento. |
+- UsuarioController  
+  CRUD completo e autenticação (login/logout)
 
----
+- EquipamentoController  
+  CRUD completo de equipamentos (modelo, marca, localização, etc.)
 
-## Riscos Organizacionais
-
-| ID  | Risco                                    | Probabilidade | Impacto | Mitigação |
-|-----|------------------------------------------|---------------|---------|-----------|
-| 8   | Resistência dos usuários à nova ferramenta | Média       | Alto    | Envolver usuários-chave desde o início, criar interface amigável (UI/UX) e comunicar benefícios do sistema. |
-| 9   | Inserção de dados incorretos no sistema  | Média         | Alto    | Implementar validações robustas nos formulários e, se possível, importar/validar dados existentes. |
-| 10  | Falta de treinamento para os usuários    | Média         | Média   | Criar manuais de usuário, realizar treinamentos práticos por perfil (técnico, gestor, administrador) e oferecer suporte. |
+- OrdemServicoController  
+  CRUD completo de ordens de serviço (título, descrição, tipo, status, técnico e equipamento)
 
 ---
 
-## Protipagem
+## 🧭 Conclusão
+O Sistema de Gestão de Manutenção (SGM) aumenta a eficiência e organização das atividades de manutenção industrial, reduz falhas, melhora a comunicação e centraliza dados em uma plataforma segura, escalável e moderna.
