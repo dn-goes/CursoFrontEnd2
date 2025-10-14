@@ -2,6 +2,7 @@
 //listar todos os Usuario
 
 import Usuario, { IUsuario } from "@/models/Usuario";
+import { criarAdmin } from "@/script/initUsurio";
 import connectMongo from "@/services/mongodb"
 
 //export arrow function
@@ -42,6 +43,8 @@ export const deleteUsuario = async (id:string)=>{
 //método de autenticação do usuário (login) Senha é criptografada
 export const autenticaUsuario = async (email: string, senha:string) =>{
     await connectMongo();
+    //chama a funcao para criar o admin
+    criarAdmin();
     //buscar um usuário pelo email
     const usuario = await Usuario.find({email}).select("+senha");
     // se usuario não encontrado
